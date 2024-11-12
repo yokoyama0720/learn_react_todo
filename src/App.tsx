@@ -28,6 +28,12 @@ export default function MyApp() {
     // 入力フィールドをクリア
     setTask("");
   }
+  // 削除ボタンを押したときの挙動
+  const onClickDelete = (id: number) => {
+    setTodos(
+      todos.filter((todo) => todo.id !== id)
+    )
+  }
 
   return (
     <div>
@@ -43,7 +49,10 @@ export default function MyApp() {
       <button onClick={onClickAdd}>追加</button>
       <ul>
         {todos.map((todo) => (
-          <li>{todo.task}</li>
+          <div>
+            <li>{todo.task}</li>
+            <button onClick={() => onClickDelete(todo.id)}>削除</button>
+          </div>
         ))}
       </ul>
     </div>
