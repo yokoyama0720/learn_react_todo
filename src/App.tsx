@@ -34,6 +34,14 @@ export default function MyApp() {
       todos.filter((todo) => todo.id !== id)
     )
   }
+  // Todoを押したときの挙動
+  const onClickToggle = (id: number) => {
+    setTodos(
+      todos.map((todo) => 
+        todo.id === id ? {...todo, completed: !todo.completed} : todo
+      )
+    )
+  }
 
   return (
     <div>
@@ -50,7 +58,7 @@ export default function MyApp() {
       <ul>
         {todos.map((todo) => (
           <div>
-            <li>{todo.task}</li>
+            <li onClick={() => onClickToggle(todo.id)}>{todo.task}</li>
             <button onClick={() => onClickDelete(todo.id)}>削除</button>
           </div>
         ))}
